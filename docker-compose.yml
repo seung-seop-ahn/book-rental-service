@@ -37,7 +37,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRINGDOC_PACKAGES_TO_SCAN=com.example.members.adapter.in.web
+      - SPRINGDOC_PACKAGES_TO_SCAN=org.example.members.adapter.in.web
       - SPRINGDOC_DEFAULT_PRODUCES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_DEFAULT_CONSUMES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_SWAGGER_UI_PATH=/
@@ -60,7 +60,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRINGDOC_PACKAGES_TO_SCAN=com.example.books.adapter.in.web
+      - SPRINGDOC_PACKAGES_TO_SCAN=org.example.books.adapter.in.web
       - SPRINGDOC_DEFAULT_PRODUCES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_DEFAULT_CONSUMES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_SWAGGER_UI_PATH=/
@@ -83,7 +83,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRINGDOC_PACKAGES_TO_SCAN=com.example.bestbooks.adapter.in.web
+      - SPRINGDOC_PACKAGES_TO_SCAN=org.example.bestbooks.adapter.in.web
       - SPRINGDOC_DEFAULT_PRODUCES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_DEFAULT_CONSUMES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_SWAGGER_UI_PATH=/
@@ -106,7 +106,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRINGDOC_PACKAGES_TO_SCAN=com.example.rental.adapter.in.web
+      - SPRINGDOC_PACKAGES_TO_SCAN=org.example.rental.adapter.in.web
       - SPRINGDOC_DEFAULT_PRODUCES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_DEFAULT_CONSUMES_MEDIA_TYPE=application/json;charset=UTF-8
       - SPRINGDOC_SWAGGER_UI_PATH=/
