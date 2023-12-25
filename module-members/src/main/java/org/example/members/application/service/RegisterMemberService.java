@@ -6,6 +6,7 @@ import org.example.members.application.port.in.IRegisterMemberUsecase;
 import org.example.members.application.port.in.command.RegisterMemberCommand;
 import org.example.members.application.port.out.IRegisterMemberPort;
 import org.example.members.domain.Member;
+import org.example.members.domain.vo.MemberId;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ public class RegisterMemberService implements IRegisterMemberUsecase {
 	private final IRegisterMemberPort registerMemberPort;
 
 	@Override
-	public String register(RegisterMemberCommand command) {
+	public MemberId register(RegisterMemberCommand command) {
 		Member member = Member.create(
 			command.getEmail(),
 			command.getPassword(),
@@ -29,6 +30,6 @@ public class RegisterMemberService implements IRegisterMemberUsecase {
 		);
 
 		Member saved = this.registerMemberPort.create(member);
-		return String.valueOf(saved.getId());
+		return saved.getId();
 	}
 }

@@ -56,9 +56,9 @@ public class RegisterMemberCommand extends SelfValidator<RegisterMemberCommand> 
 	private LocalDate birth;
 
 	public RegisterMemberCommand(
-		String name,
 		String email,
 		String password,
+		String name,
 		String zipCode,
 		String address1,
 		String address2,
