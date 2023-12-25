@@ -90,7 +90,9 @@ project(':module-common') {
         enabled = true
     }
 
-    dependencies {}
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-aop:3.2.0'
+    }
 }
 
 project(':module-members') {
