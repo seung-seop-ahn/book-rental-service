@@ -43,11 +43,14 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         //	runtimeOnly 'com.h2database:h2'
-        //	runtimeOnly 'com.mysql:mysql-connector-j'
+        runtimeOnly 'com.mysql:mysql-connector-j'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         //	testImplementation 'org.springframework.security:spring-security-test'
+
+        // swagger
+        implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
 
         testImplementation platform('org.junit:junit-bom:5.9.1')
         testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -55,6 +58,26 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    afterEvaluate { project ->
+        if(!project.name.startsWith('module-common')) {
+            docker {
+                println(tasks.bootJar.outputs.files)
+
+                // image name
+                name 'app-' + project.name + ':' + project.version
+
+                // dockerfile
+                dockerfile file('./dockerfile')
+
+                // copy dockerized files
+                files tasks.bootJar.outputs.files
+
+                // set Dockerfile arguments
+                buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+            }
+        }
     }
 }
 
