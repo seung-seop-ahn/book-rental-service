@@ -34,7 +34,7 @@ public class UserMemberController {
 			.email(request.getEmail())
 			.password(request.getPassword())
 			.name(request.getName())
-			.zipCode(request.getZipCode())
+			.zipCode(request.getZipcode())
 			.address1(request.getAddress1())
 			.address2(request.getAddress2())
 			.cellPhone(request.getCellPhone())

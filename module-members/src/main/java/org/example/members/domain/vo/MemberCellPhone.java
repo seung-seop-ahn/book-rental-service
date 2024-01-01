@@ -8,6 +8,6 @@ public class MemberCellPhone {
 	String cellPhone;
 
 	public MemberCellPhone(String cellPhone) {
-		this.cellPhone = cellPhone;
+		this.cellPhone = cellPhone.replace("-", "");
 	}
 }

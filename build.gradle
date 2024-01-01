@@ -108,6 +108,7 @@ project(':module-members') {
 
     dependencies {
         implementation project(':module-common')
+        implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '6.2.1'
     }
 }
 
