@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -37,7 +40,24 @@ public class UserMemberController {
 	private final IModifyMemberUsecase modifyMemberUsecase;
 
 	@Operation(summary = "register", description = "register member")
-	@ApiResponse(responseCode = "201", description = "created")
+	@ApiResponses(value = {
+		@ApiResponse(
+			responseCode = "201",
+			description = "created",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = MemberId.class))
+			}),
+		@ApiResponse(
+			responseCode = "500",
+			description = "IllegalArgumentException(email, zipcode, birth)",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = IllegalArgumentException.class))
+			})
+	})
 	@PostMapping()
 	public ResponseEntity<MemberId> registerMember(
 		@RequestBody RegisterMemberRequest request
@@ -59,7 +79,24 @@ public class UserMemberController {
 	}
 
 	@Operation(summary = "find", description = "find member")
-	@ApiResponse(responseCode = "200", description = "ok")
+	@ApiResponses(value = {
+		@ApiResponse(
+			responseCode = "200",
+			description = "ok",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = MemberResponse.class))
+			}),
+		@ApiResponse(
+			responseCode = "500",
+			description = "IllegalArgumentException(member)",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = IllegalArgumentException.class))
+			})
+	})
 	@GetMapping("{memberId}")
 	public ResponseEntity<MemberResponse> findMember(
 		@Parameter(description = "memberId", in = ParameterIn.PATH)
@@ -70,7 +107,24 @@ public class UserMemberController {
 	}
 
 	@Operation(summary = "modify", description = "modify member")
-	@ApiResponse(responseCode = "200", description = "ok")
+	@ApiResponses(value = {
+		@ApiResponse(
+			responseCode = "200",
+			description = "ok",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = MemberResponse.class))
+			}),
+		@ApiResponse(
+			responseCode = "500",
+			description = "IllegalArgumentException(member)",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = IllegalArgumentException.class))
+			})
+	})
 	@PutMapping("{memberId}")
 	public ResponseEntity<MemberResponse> modifyMember(
 		@Parameter(description = "memberId", in = ParameterIn.PATH)
