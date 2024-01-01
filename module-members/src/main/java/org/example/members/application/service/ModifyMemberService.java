@@ -54,6 +54,7 @@ public class ModifyMemberService implements IModifyMemberUsecase {
 			command.getAddress2(),
 			command.getCellPhone(),
 			command.getBirth(),
+			member.getStatus(),
 			member.getCreatedAt(),
 			LocalDateTime.now()
 		);

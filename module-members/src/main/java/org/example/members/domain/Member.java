@@ -10,6 +10,7 @@ import org.example.members.domain.vo.MemberEmail;
 import org.example.members.domain.vo.MemberId;
 import org.example.members.domain.vo.MemberName;
 import org.example.members.domain.vo.MemberPassword;
+import org.example.members.domain.vo.MemberStatus;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,8 @@ public class Member {
 	private MemberCellPhone cellPhone;
 
 	private MemberBirth birth;
+
+	private MemberStatus status;
 
 	private LocalDateTime createdAt;
 
@@ -54,6 +57,7 @@ public class Member {
 			new MemberAddress(zipcode, address1, address2),
 			new MemberCellPhone(cellPhone),
 			new MemberBirth(birth),
+			MemberStatus.normal,
 			LocalDateTime.now(),
 			LocalDateTime.now()
 		);
@@ -69,6 +73,7 @@ public class Member {
 		String address2,
 		String cellPhone,
 		LocalDate birth,
+		MemberStatus status,
 		LocalDateTime createdAt,
 		LocalDateTime updatedAt
 	) {
@@ -80,6 +85,7 @@ public class Member {
 			new MemberAddress(zipcode, address1, address2),
 			new MemberCellPhone(cellPhone),
 			new MemberBirth(birth),
+			status,
 			createdAt,
 			updatedAt
 		);

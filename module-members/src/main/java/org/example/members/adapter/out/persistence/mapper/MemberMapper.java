@@ -16,6 +16,7 @@ public class MemberMapper {
 			member.getAddress().getAddress2(),
 			member.getCellPhone().getCellPhone(),
 			member.getBirth().getBirth(),
+			member.getStatus(),
 			member.getCreatedAt(),
 			member.getUpdatedAt()
 		);
@@ -32,6 +33,7 @@ public class MemberMapper {
 			entity.getAddress2(),
 			entity.getCellPhone(),
 			entity.getBirth(),
+			entity.getStatus(),
 			entity.getCreatedAt(),
 			entity.getUpdatedAt()
 		);
