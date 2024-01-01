@@ -5,6 +5,7 @@ import org.example.common.annotation.service.WebAdapter;
 import org.example.members.adapter.in.web.v1.dto.request.ModifyMemberRequest;
 import org.example.members.adapter.in.web.v1.dto.request.RegisterMemberRequest;
 import org.example.members.adapter.in.web.v1.dto.response.MemberResponse;
+import org.example.members.application.port.in.IFindMemberUsecase;
 import org.example.members.application.port.in.IModifyMemberUsecase;
 import org.example.members.application.port.in.IRegisterMemberUsecase;
 import org.example.members.application.port.in.command.ModifyMemberCommand;
@@ -12,6 +13,7 @@ import org.example.members.application.port.in.command.RegisterMemberCommand;
 import org.example.members.domain.vo.MemberId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class UserMemberController {
 
 	private final IRegisterMemberUsecase registerMemberUsecase;
+	private final IFindMemberUsecase findMemberUsecase;
 	private final IModifyMemberUsecase modifyMemberUsecase;
 
 	@Operation(summary = "register", description = "register member")
@@ -53,6 +56,17 @@ public class UserMemberController {
 		MemberId memberId = this.registerMemberUsecase.register(command);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(memberId);
+	}
+
+	@Operation(summary = "find", description = "find member")
+	@ApiResponse(responseCode = "200", description = "ok")
+	@GetMapping("{memberId}")
+	public ResponseEntity<MemberResponse> findMember(
+		@Parameter(description = "memberId", in = ParameterIn.PATH)
+		@PathVariable("memberId") Long memberId
+	) {
+		MemberResponse member = this.findMemberUsecase.findById(memberId);
+		return ResponseEntity.ok(member);
 	}
 
 	@Operation(summary = "modify", description = "modify member")
