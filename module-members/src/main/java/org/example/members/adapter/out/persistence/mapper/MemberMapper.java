@@ -16,6 +16,9 @@ public class MemberMapper {
 			member.getAddress().getAddress2(),
 			member.getCellPhone().getCellPhone(),
 			member.getBirth().getBirth(),
+			member.getPoints().getRewardPoint(),
+			member.getPoints().getPenaltyPoint(),
+			member.getRentableStatus(),
 			member.getStatus(),
 			member.getCreatedAt(),
 			member.getUpdatedAt()
@@ -33,6 +36,9 @@ public class MemberMapper {
 			entity.getAddress2(),
 			entity.getCellPhone(),
 			entity.getBirth(),
+			entity.getRewardPoint(),
+			entity.getPenaltyPoint(),
+			entity.getRentableStatus(),
 			entity.getStatus(),
 			entity.getCreatedAt(),
 			entity.getUpdatedAt()

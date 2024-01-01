@@ -10,6 +10,8 @@ import org.example.members.domain.vo.MemberEmail;
 import org.example.members.domain.vo.MemberId;
 import org.example.members.domain.vo.MemberName;
 import org.example.members.domain.vo.MemberPassword;
+import org.example.members.domain.vo.MemberPoints;
+import org.example.members.domain.vo.MemberRentableStatus;
 import org.example.members.domain.vo.MemberStatus;
 
 import lombok.AccessLevel;
@@ -32,6 +34,10 @@ public class Member {
 	private MemberCellPhone cellPhone;
 
 	private MemberBirth birth;
+
+	private MemberPoints points;
+
+	private MemberRentableStatus rentableStatus;
 
 	private MemberStatus status;
 
@@ -57,6 +63,8 @@ public class Member {
 			new MemberAddress(zipcode, address1, address2),
 			new MemberCellPhone(cellPhone),
 			new MemberBirth(birth),
+			new MemberPoints(0, 0),
+			MemberRentableStatus.available,
 			MemberStatus.normal,
 			LocalDateTime.now(),
 			LocalDateTime.now()
@@ -73,6 +81,9 @@ public class Member {
 		String address2,
 		String cellPhone,
 		LocalDate birth,
+		int earnedPoint,
+		int overduePoint,
+		MemberRentableStatus rentableStatus,
 		MemberStatus status,
 		LocalDateTime createdAt,
 		LocalDateTime updatedAt
@@ -85,6 +96,8 @@ public class Member {
 			new MemberAddress(zipcode, address1, address2),
 			new MemberCellPhone(cellPhone),
 			new MemberBirth(birth),
+			new MemberPoints(earnedPoint, overduePoint),
+			rentableStatus,
 			status,
 			createdAt,
 			updatedAt

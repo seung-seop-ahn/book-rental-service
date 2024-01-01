@@ -19,6 +19,10 @@ public class WithdrawMemberService implements IWithdrawMemberUsecase {
 	@Override
 	public void withdraw(Long memberId) {
 		MemberEntity entity = this.findMemberPort.findEntityById(memberId);
+		if (entity.getPenaltyPoint() > 0) {
+			throw new IllegalArgumentException("invalid penalty point");
+		}
+
 		entity.setStatus(MemberStatus.withdraw);
 	}
 }

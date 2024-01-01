@@ -3,6 +3,7 @@ package org.example.members.adapter.out.persistence.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.example.members.domain.vo.MemberRentableStatus;
 import org.example.members.domain.vo.MemberStatus;
 
 import jakarta.persistence.Column;
@@ -114,6 +115,37 @@ public class MemberEntity {
 		columnDefinition = "date default (current_date) comment 'birth'"
 	)
 	private LocalDate birth;
+
+	@Column(
+		name = "reward_point",
+		unique = false,
+		nullable = false,
+		insertable = true,
+		updatable = true,
+		columnDefinition = "int default 0 comment 'rewardPoint'"
+	)
+	private int rewardPoint;
+
+	@Column(
+		name = "penalty_point",
+		unique = false,
+		nullable = false,
+		insertable = true,
+		updatable = true,
+		columnDefinition = "int default 0 comment 'penaltyPoint'"
+	)
+	private int penaltyPoint;
+
+	@Enumerated(EnumType.STRING)
+	@Column(
+		name = "rentable_status",
+		unique = false,
+		nullable = false,
+		insertable = true,
+		updatable = true,
+		columnDefinition = "enum('available', 'unavailable') default 'available' comment 'rentableStatus'"
+	)
+	private MemberRentableStatus rentableStatus;
 
 	@Enumerated(EnumType.STRING)
 	@Column(

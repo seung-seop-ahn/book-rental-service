@@ -162,7 +162,7 @@ public class UserMemberController {
 			}),
 		@ApiResponse(
 			responseCode = "500",
-			description = "IllegalArgumentException(member)",
+			description = "IllegalArgumentException(member, penaltyPoint)",
 			content = {
 				@Content(
 					mediaType = "application/json",
