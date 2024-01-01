@@ -1,4 +1,4 @@
-package org.example.members.adapter.in.web.v1.dto;
+package org.example.members.adapter.in.web.v1.dto.request;
 
 import java.time.LocalDate;
 
@@ -13,38 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterMemberRequest {
-	@Pattern(
-		regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$",
-		message = "email format"
-	)
-	@Schema(
-		name = "email",
-		description = "email",
-		maxLength = 255,
-		nullable = false,
-		defaultValue = "",
-		type = "string",
-		format = "email",
-		example = "user@example.com"
-	)
-	private String email;
-
-	@Pattern(
-		regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$",
-		message = "8~16, uppercase, lowercase, number, special case"
-	)
-	@Schema(
-		name = "password",
-		description = "password",
-		maxLength = 100,
-		nullable = false,
-		defaultValue = "",
-		type = "string",
-		example = "q1w2e3r4!"
-	)
-	private String password;
-
+public class ModifyMemberRequest {
 	@Schema(
 		name = "name",
 		description = "name",

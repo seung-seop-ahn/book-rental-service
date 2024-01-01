@@ -10,7 +10,15 @@ public class MemberPassword {
 	String password;
 
 	public MemberPassword(String password) {
+		this.password = this.encrypt(password);
+	}
+
+	public MemberPassword(String password, boolean isEncrypted) {
+		this.password = isEncrypted ? password : this.encrypt(password);
+	}
+
+	public String encrypt(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		this.password = encoder.encode(password);
+		return encoder.encode(password);
 	}
 }
