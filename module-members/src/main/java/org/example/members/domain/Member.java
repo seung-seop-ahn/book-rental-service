@@ -103,4 +103,20 @@ public class Member {
 			updatedAt
 		);
 	}
+
+	public void addRewardPoint(int rewardPoint) {
+		this.points = this.points.addRewardPoint(rewardPoint);
+	}
+
+	public void addPenaltyPoint(int penaltyPoint) {
+		this.points = this.points.addPenaltyPoint(penaltyPoint);
+		this.rentableStatus = MemberRentableStatus.unavailable;
+	}
+
+	public void removePenaltyPoint() {
+		this.points = this.points.removePenaltyPoint();
+		if (this.points.getPenaltyPoint() == 0) {
+			this.rentableStatus = MemberRentableStatus.available;
+		}
+	}
 }
