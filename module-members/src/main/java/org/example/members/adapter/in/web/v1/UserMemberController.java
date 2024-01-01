@@ -8,11 +8,13 @@ import org.example.members.adapter.in.web.v1.dto.response.MemberResponse;
 import org.example.members.application.port.in.IFindMemberUsecase;
 import org.example.members.application.port.in.IModifyMemberUsecase;
 import org.example.members.application.port.in.IRegisterMemberUsecase;
+import org.example.members.application.port.in.IWithdrawMemberUsecase;
 import org.example.members.application.port.in.command.ModifyMemberCommand;
 import org.example.members.application.port.in.command.RegisterMemberCommand;
 import org.example.members.domain.vo.MemberId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +40,7 @@ public class UserMemberController {
 	private final IRegisterMemberUsecase registerMemberUsecase;
 	private final IFindMemberUsecase findMemberUsecase;
 	private final IModifyMemberUsecase modifyMemberUsecase;
+	private final IWithdrawMemberUsecase withdrawMemberUsecase;
 
 	@Operation(summary = "register", description = "register member")
 	@ApiResponses(value = {
@@ -145,5 +148,34 @@ public class UserMemberController {
 		MemberResponse member = this.modifyMemberUsecase.modify(memberId, command);
 
 		return ResponseEntity.ok(member);
+	}
+
+	@Operation(summary = "withdraw", description = "withdraw member")
+	@ApiResponses(value = {
+		@ApiResponse(
+			responseCode = "204",
+			description = "no content",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = Void.class))
+			}),
+		@ApiResponse(
+			responseCode = "500",
+			description = "IllegalArgumentException(member)",
+			content = {
+				@Content(
+					mediaType = "application/json",
+					schema = @Schema(implementation = IllegalArgumentException.class))
+			})
+	})
+	@DeleteMapping("{memberId}")
+	public ResponseEntity<Void> withdrawMember(
+		@Parameter(description = "memberId", in = ParameterIn.PATH)
+		@PathVariable("memberId") Long memberId
+	) {
+		// todo: spring security
+		this.withdrawMemberUsecase.withdraw(memberId);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
